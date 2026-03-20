@@ -164,7 +164,7 @@ fraud_score = anomaly_detector.predict(['gps_pattern', 'activity_hours', 'order_
 - [x] Responsive design and animations
 - [x] Deployment to Vercel
 
-### **Phase 2: Backend Integration (Next 3 Months)**
+### **Phase 2: Backend Integration**
 - [ ] Node.js API development
 - [ ] Real weather API integration
 - [ ] Database schema design
@@ -172,14 +172,14 @@ fraud_score = anomaly_detector.predict(['gps_pattern', 'activity_hours', 'order_
 - [ ] Payment gateway integration
 - [ ] Basic ML model implementation
 
-### **Phase 3: AI/ML Enhancement (3-6 Months)**
+### **Phase 3: AI/ML Enhancement**
 - [ ] Advanced risk prediction models
 - [ ] Fraud detection algorithms
 - [ ] Dynamic pricing optimization
 - [ ] Real-time data processing pipeline
 - [ ] Mobile app development
 
-### **Phase 4: Scale & Expansion (6-12 Months)**
+### **Phase 4: Scale & Expansion**
 - [ ] Multi-city expansion
 - [ ] Advanced analytics dashboard
 - [ ] Partner integrations (Swiggy, Zomato)
