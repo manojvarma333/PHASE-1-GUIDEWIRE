@@ -1,16 +1,31 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import FeaturesSection from "@/components/FeaturesSection";
+import RiskDashboard from "@/components/RiskDashboard";
+import PremiumCalculator from "@/components/PremiumCalculator";
+import PayoutSimulator from "@/components/PayoutSimulator";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const scrollToDashboard = () => {
+    document.getElementById("dashboard")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen">
+      <Navbar />
+      <HeroSection onGetStarted={scrollToDashboard} />
+      <FeaturesSection />
+      <RiskDashboard />
+      <PremiumCalculator />
+      <PayoutSimulator />
+      <footer className="py-12 border-t border-border/50">
+        <div className="container text-center text-sm text-muted-foreground">
+          <p>RiskShield — AI-Powered Income Protection for Delivery Workers</p>
+          <p className="mt-1 text-xs">Phase 1 Prototype • Simulated Data</p>
+        </div>
+      </footer>
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
