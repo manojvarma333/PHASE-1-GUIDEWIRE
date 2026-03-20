@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, CheckCircle2, CloudRain, TrendingDown, Clock, IndianRupee } from "lucide-react";
+import { Play, CheckCircle2, CloudRain, TrendingDown, Clock, IndianRupee, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -11,12 +11,17 @@ const steps = [
   { icon: CheckCircle2, label: "Payout Triggered", detail: "₹450 auto-credited to wallet", color: "text-primary" },
 ];
 
-const PayoutSimulator = () => {
+const PayoutSimulator = ({ onPayoutComplete, user, onLoginRequired }) => {
   const [running, setRunning] = useState(false);
   const [currentStep, setCurrentStep] = useState(-1);
   const [complete, setComplete] = useState(false);
 
   const runSimulation = () => {
+    if (!user) {
+      onLoginRequired();
+      return;
+    }
+
     setRunning(true);
     setComplete(false);
     setCurrentStep(0);
@@ -28,6 +33,8 @@ const PayoutSimulator = () => {
           setTimeout(() => {
             setComplete(true);
             setRunning(false);
+            // Trigger payout to wallet
+            onPayoutComplete(450);
           }, 800);
         }
       }, (i + 1) * 1200);
@@ -52,15 +59,25 @@ const PayoutSimulator = () => {
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
             Payout <span className="text-gradient-primary">Simulator</span>
           </h2>
-          <p className="text-muted-foreground">Watch how automatic payouts are triggered for Ravi's scenario</p>
+          <p className="text-muted-foreground">
+            {user 
+              ? "Watch how automatic payouts are triggered for your account"
+              : "Login to see how automatic payouts work for delivery workers"
+            }
+          </p>
         </motion.div>
 
         <Card className="bg-glass border-border/50">
           <CardHeader className="text-center">
             <CardTitle className="font-display">
-              👤 Ravi — Food Delivery Partner
+              👤 {user ? user.name : "Guest User"} — {user ? "Protected" : "Login Required"}
             </CardTitle>
-            <p className="text-sm text-muted-foreground">Earns ₹1,000/day • Works 10 hrs/day • Heavy rain day</p>
+            <p className="text-sm text-muted-foreground">
+              {user 
+                ? `${user.earnings} • ${user.workHours} • Ready for simulation`
+                : "Earns ₹1,000/day • Works 10 hrs/day • Heavy rain day"
+              }
+            </p>
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Steps */}
@@ -106,16 +123,31 @@ const PayoutSimulator = () => {
                 >
                   <IndianRupee className="w-8 h-8 text-primary mx-auto mb-2" />
                   <div className="text-2xl font-display font-bold text-gradient-primary">₹450 Credited!</div>
-                  <p className="text-sm text-muted-foreground mt-1">Payout sent to Ravi's wallet in under 5 minutes</p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Payout sent to {user.name}'s wallet in under 5 minutes
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Check your profile dashboard to view updated balance
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {!user && (
+              <div className="p-4 rounded-lg bg-accent/10 border border-accent/20 text-center">
+                <LogIn className="w-6 h-6 text-accent mx-auto mb-2" />
+                <p className="text-sm text-accent font-medium">Login Required</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Login to run the simulation and receive payouts to your wallet
+                </p>
+              </div>
+            )}
 
             <div className="flex justify-center gap-3 pt-2">
               {!running && !complete && (
                 <Button variant="hero" onClick={runSimulation}>
                   <Play className="w-4 h-4" />
-                  Run Simulation
+                  {user ? "Run Simulation" : "Login & Run"}
                 </Button>
               )}
               {complete && (
