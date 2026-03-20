@@ -226,7 +226,7 @@ fraud_score = anomaly_detector.predict(['gps_pattern', 'activity_hours', 'order_
 ## 🚀 **Getting Started**
 
 ### **Live Demo**
-👉 **[View Live Application](https://your-app.vercel.app)**
+👉 **[View Live Application](https://rain-shield-pay.vercel.app)**
 
 ### **Local Development**
 ```bash
@@ -276,12 +276,11 @@ src/
 
 ### **Project Links**
 - **GitHub Repository**: [PHASE-1-GUIDEWIRE](https://github.com/manojvarma333/PHASE-1-GUIDEWIRE)
-- **Live Demo**: [Vercel Deployment](https://your-app.vercel.app)
+- **Live Demo**: [rain-shield-pay.vercel.app](https://rain-shield-pay.vercel.app)
 - **Issues & Feature Requests**: [GitHub Issues](https://github.com/manojvarma333/PHASE-1-GUIDEWIRE/issues)
 
 ### **Business Inquiries**
-- **Email**: contact@rainshieldpay.com
-- **LinkedIn**: [Manoj Varma](https://linkedin.com/in/manojvarma333)
+- **Email**: manojvarmapinnamaraju28@gmail.com
 
 ---
 
